@@ -12,15 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Entity
+@Table(name = "tb_role")
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-@Entity
-@Table(name = "tb_role")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String authority;
 }
