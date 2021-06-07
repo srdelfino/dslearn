@@ -1,6 +1,5 @@
 package br.pro.delfino.dslearn.entities;
 
-import br.pro.delfino.dslearn.entities.enums.ResourceType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,49 +11,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_resource")
+@Table(name = "tb_section")
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Resource {
+@Getter
+@Setter
+public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Long id;
 
-    @Getter
-    @Setter
     private String title;
 
-    @Getter
-    @Setter
     private String description;
 
-    @Getter
-    @Setter
     private Integer position;
 
     @Getter
     @Setter
     private String imgUri;
 
-    @Getter
-    @Setter
-    private ResourceType type;
+    @ManyToOne
+    @JoinColumn(name = "resource_id")
+    private Resource resource;
 
     @ManyToOne
-    @JoinColumn(name = "offer_id")
-    @Getter
-    @Setter
-    private Offer offer;
-
-    @OneToMany(mappedBy = "resource")
-    @Getter
-    private Set<Section> sections = new HashSet<>();
+    @JoinColumn(name = "prerequisite_id")
+    private Section prerequisite;
 }

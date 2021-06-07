@@ -21,3 +21,7 @@ INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES ('2.0
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Trilha HTML', 'Trilha Principal do Curso', 1 , 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 1, 1);
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Forum', 'Tire suas dúvidas', 2 , 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 2, 1);
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Lives', 'Lives Exclusivas para a Turma', 3 , 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 0, 1);
+
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Capítulo 1', 'Introdução', 1, 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 1, null);
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Capítulo 2', 'Referencial Teórico', 2, 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 1, 1);
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Capítulo 3', 'Conclusão', 3, 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 1, 2);

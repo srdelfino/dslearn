@@ -25,10 +25,12 @@ public class Offer {
     @Setter
     private String edition;
 
+    @Column(columnDefinition = "timestamp without time zone")
     @Getter
     @Setter
     private Instant startMoment;
 
+    @Column(columnDefinition = "timestamp without time zone")
     @Getter
     @Setter
     private Instant endMoment;
