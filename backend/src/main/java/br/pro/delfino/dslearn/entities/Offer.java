@@ -9,21 +9,23 @@ import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "tb_notification")
+@Table(name = "tb_offer")
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-public class Notification {
+public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String text;
-    private Instant moment;
-    private Boolean read = false;
-    private String route;
+
+    private String edition;
+
+    private Instant startMoment;
+
+    private Instant endMoment;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "course_id")
+    private Course course;
 }
