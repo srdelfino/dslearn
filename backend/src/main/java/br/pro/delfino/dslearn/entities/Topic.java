@@ -14,15 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_topic")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Topic {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
-
+public class Topic extends GenericEntity {
     @Getter
     @Setter
     private String title;
@@ -57,6 +49,8 @@ public class Topic {
 
     @ManyToOne
     @JoinColumn(name = "reply_id")
+    @Getter
+    @Setter
     private Reply answer;
 
     @ManyToMany
@@ -67,5 +61,6 @@ public class Topic {
     private Set<User> likes = new HashSet<>();
 
     @OneToMany(mappedBy = "topic")
+    @Getter
     private List<Reply> replies = new ArrayList<>();
 }

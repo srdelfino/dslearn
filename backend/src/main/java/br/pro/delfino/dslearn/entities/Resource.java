@@ -19,15 +19,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_resource")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Resource {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
-
+public class Resource extends GenericEntity {
     @Getter
     @Setter
     private String title;

@@ -12,15 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_lesson")
 @Inheritance(strategy = InheritanceType.JOINED)
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public abstract class Lesson {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
-
+public abstract class Lesson extends  GenericEntity {
     @Getter
     @Setter
     private String title;
@@ -29,10 +21,10 @@ public abstract class Lesson {
     @Setter
     private Integer position;
 
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "section_id")
+    @Getter
+    @Setter
     private Section section;
 
     @OneToMany(mappedBy = "lesson")

@@ -11,15 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_course")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Course {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
-
+public class Course extends  GenericEntity {
     @Getter
     @Setter
     private String name;

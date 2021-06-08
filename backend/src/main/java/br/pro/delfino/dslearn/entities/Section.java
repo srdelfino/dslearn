@@ -16,23 +16,15 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_section")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-public class Section {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Section extends GenericEntity  {
     private String title;
 
     private String description;
 
     private Integer position;
 
-    @Getter
-    @Setter
     private String imgUri;
 
     @ManyToOne

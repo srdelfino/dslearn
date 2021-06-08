@@ -10,15 +10,9 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "tb_notification")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-public class Notification {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Notification extends GenericEntity {
     private String text;
 
     @Column(columnDefinition = "timestamp without time zone")

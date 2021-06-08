@@ -11,7 +11,6 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "tb_task")
-@NoArgsConstructor
 @Getter
 @Setter
 public class Task extends Lesson {

@@ -12,15 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_offer")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Offer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
-
+public class Offer extends GenericEntity {
     @Getter
     @Setter
     private String edition;

@@ -12,15 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_reply")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Reply {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
-
+public class Reply extends GenericEntity {
     @Column(columnDefinition = "text")
     @Getter
     @Setter

@@ -14,14 +14,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_role")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Role extends GenericEntity  {
     private String authority;
 }
