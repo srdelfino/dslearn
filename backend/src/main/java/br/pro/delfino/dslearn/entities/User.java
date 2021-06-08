@@ -70,4 +70,8 @@ public class User extends AbstractBaseEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getPassword() {
+        return password;
+    }
 }
