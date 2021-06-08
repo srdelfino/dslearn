@@ -35,6 +35,10 @@ public abstract class Lesson {
     @JoinColumn(name = "section_id")
     private Section section;
 
+    @OneToMany(mappedBy = "lesson")
+    @Getter
+    private Set<Deliver> deliveries = new HashSet<>();
+
     @ManyToMany
     @JoinTable(
             name = "tb_lessons_done",

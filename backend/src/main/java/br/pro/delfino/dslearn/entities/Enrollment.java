@@ -41,6 +41,10 @@ public class Enrollment {
     @Getter
     private Set<Lesson> lessonsDone = new HashSet<>();
 
+    @OneToMany(mappedBy = "enrollment")
+    @Getter
+    private Set<Deliver> deliveries = new HashSet<>();
+
     public Enrollment(User student, Offer offer, Instant enrollMoment, Instant refundMoment, Boolean available, Boolean onlyUpdate) {
         this.id.setUser(student);
         this.id.setOffer(offer);

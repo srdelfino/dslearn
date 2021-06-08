@@ -44,4 +44,8 @@ public class Offer {
     @OneToMany(mappedBy = "offer")
     @Getter
     private Set<Resource> resources = new HashSet<>();
+
+    @OneToMany(mappedBy = "offer")
+    @Getter
+    private Set<Topic> topics = new HashSet<>();
 }
