@@ -1,8 +1,6 @@
 package br.pro.delfino.dslearn.entities;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,7 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_lesson")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Lesson extends  GenericEntity {
+public abstract class Lesson extends AbstractBaseEntity {
     @Getter
     @Setter
     private String title;

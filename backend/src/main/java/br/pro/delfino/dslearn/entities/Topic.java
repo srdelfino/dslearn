@@ -1,8 +1,6 @@
 package br.pro.delfino.dslearn.entities;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_topic")
-public class Topic extends GenericEntity {
+public class Topic extends AbstractBaseEntity {
     @Getter
     @Setter
     private String title;

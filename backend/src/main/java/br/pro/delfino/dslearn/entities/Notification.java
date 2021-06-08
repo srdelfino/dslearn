@@ -1,8 +1,6 @@
 package br.pro.delfino.dslearn.entities;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,7 +10,7 @@ import java.time.Instant;
 @Table(name = "tb_notification")
 @Getter
 @Setter
-public class Notification extends GenericEntity {
+public class Notification extends AbstractBaseEntity {
     private String text;
 
     @Column(columnDefinition = "timestamp without time zone")
