@@ -9,6 +9,7 @@ import br.pro.delfino.dslearn.services.exceptions.ForbiddenException;
 import br.pro.delfino.dslearn.services.exceptions.ResourceNotFoundException;
 import br.pro.delfino.dslearn.services.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,8 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ResourceExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public StandardError resourceNotFoundException (ResourceNotFoundException exception, HttpServletRequest request) {
+	public ResponseEntity<StandardError> resourceNotFoundException (ResourceNotFoundException exception, HttpServletRequest request) {
 		StandardError error = new StandardError();
 
 		error.setTimestamp(Instant.now());
@@ -29,12 +29,11 @@ public class ResourceExceptionHandler {
 		error.setMessage(exception.getMessage());
 		error.setPath(request.getRequestURI());
 
-		return error;
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}	
 	
 	@ExceptionHandler(DatabaseException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public StandardError databaseException (DatabaseException exception, HttpServletRequest request) {
+	public ResponseEntity<StandardError> databaseException (DatabaseException exception, HttpServletRequest request) {
 		StandardError error = new StandardError();
 
 		error.setTimestamp(Instant.now());
@@ -43,12 +42,11 @@ public class ResourceExceptionHandler {
 		error.setMessage(exception.getMessage());
 		error.setPath(request.getRequestURI());
 
-		return error;
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}	
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-	public ValidationError methodArgumentNotValidException (MethodArgumentNotValidException exception, HttpServletRequest request) {
+	public ResponseEntity<ValidationError> methodArgumentNotValidException (MethodArgumentNotValidException exception, HttpServletRequest request) {
 		ValidationError error = new ValidationError();
 
 		error.setTimestamp(Instant.now());
@@ -60,21 +58,19 @@ public class ResourceExceptionHandler {
 		exception.getBindingResult().getFieldErrors().forEach(fieldError -> {
 			error.addError(fieldError.getField(), fieldError.getDefaultMessage());
 		});
-		
-		return error;
+
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(error);
 	}
 
 	@ExceptionHandler(ForbiddenException.class)
-	@ResponseStatus(HttpStatus.FORBIDDEN)
-	public OAuthCustomError forbiddenException (ForbiddenException exception, HttpServletRequest request) {
+	public ResponseEntity<OAuthCustomError> forbiddenException (ForbiddenException exception, HttpServletRequest request) {
 		OAuthCustomError error = new OAuthCustomError("Forbidden", exception.getMessage());
-		return error;
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
 	}
 
 	@ExceptionHandler(UnauthorizedException.class)
-	@ResponseStatus(HttpStatus.UNAUTHORIZED)
-	public OAuthCustomError unauthorizedException (UnauthorizedException exception, HttpServletRequest request) {
+	public ResponseEntity<OAuthCustomError> unauthorizedException (UnauthorizedException exception, HttpServletRequest request) {
 		OAuthCustomError error = new OAuthCustomError("Unauthorized", exception.getMessage());
-		return error;
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
 	}
 }

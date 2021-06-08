@@ -16,11 +16,13 @@ import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
+	private final AuthService authService;
 	private final BCryptPasswordEncoder passwordEncoder;
 	private final ModelMapper mapper;
 	private final UserRepository repository;
 
-	public UserService(BCryptPasswordEncoder passwordEncoder, ModelMapper mapper, UserRepository repository) {
+	public UserService(AuthService authService, BCryptPasswordEncoder passwordEncoder, ModelMapper mapper, UserRepository repository) {
+		this.authService = authService;
 		this.passwordEncoder = passwordEncoder;
 		this.mapper = mapper;
 		this.repository = repository;
@@ -28,6 +30,8 @@ public class UserService implements UserDetailsService {
 
 	@Transactional(readOnly = true)
 	public UserDTO findById(Long id) {
+		authService.validateSelfOrAdmin(id);
+
 		Optional<User> optional = repository.findById(id);
 
 		User entity = optional.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));

@@ -74,4 +74,8 @@ public class User extends AbstractBaseEntity implements UserDetails {
     public String getPassword() {
         return password;
     }
+
+    public boolean hasRole(String roleName) {
+        return roles.stream().anyMatch(role -> role.getAuthority().equals(roleName));
+    }
 }

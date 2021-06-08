@@ -1,6 +1,8 @@
 package br.pro.delfino.dslearn.services.exceptions;
 
-// Http Status Code: 403
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 public class ForbiddenException extends RuntimeException {
 	public ForbiddenException(String message) {
 		super(message);
