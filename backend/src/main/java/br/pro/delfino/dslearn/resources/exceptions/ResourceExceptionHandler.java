@@ -5,7 +5,9 @@ import java.time.Instant;
 import javax.servlet.http.HttpServletRequest;
 
 import br.pro.delfino.dslearn.services.exceptions.DatabaseException;
+import br.pro.delfino.dslearn.services.exceptions.ForbiddenException;
 import br.pro.delfino.dslearn.services.exceptions.ResourceNotFoundException;
+import br.pro.delfino.dslearn.services.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -46,7 +48,7 @@ public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-	public ValidationError validation(MethodArgumentNotValidException exception, HttpServletRequest request) {
+	public ValidationError methodArgumentNotValidException (MethodArgumentNotValidException exception, HttpServletRequest request) {
 		ValidationError error = new ValidationError();
 
 		error.setTimestamp(Instant.now());
@@ -60,5 +62,19 @@ public class ResourceExceptionHandler {
 		});
 		
 		return error;
-	}	
+	}
+
+	@ExceptionHandler(ForbiddenException.class)
+	@ResponseStatus(HttpStatus.FORBIDDEN)
+	public OAuthCustomError forbiddenException (ForbiddenException exception, HttpServletRequest request) {
+		OAuthCustomError error = new OAuthCustomError("Forbidden", exception.getMessage());
+		return error;
+	}
+
+	@ExceptionHandler(UnauthorizedException.class)
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	public OAuthCustomError unauthorizedException (UnauthorizedException exception, HttpServletRequest request) {
+		OAuthCustomError error = new OAuthCustomError("Unauthorized", exception.getMessage());
+		return error;
+	}
 }
