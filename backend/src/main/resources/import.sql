@@ -25,3 +25,6 @@ INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) 
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Capítulo 1', 'Introdução', 1, 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 1, null);
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Capítulo 2', 'Referencial Teórico', 2, 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 1, 1);
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Capítulo 3', 'Conclusão', 3, 'https://c.pxhere.com/images/95/58/e5825e8772c6067b9c021758c2a3-1443547.jpg!d', 1, 2);
+
+INSERT INTO tb_enrollment (student_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2021-06-07T13:00:00Z', null, true, false);
+INSERT INTO tb_enrollment (student_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2021-06-07T13:00:00Z', null, true, false);
